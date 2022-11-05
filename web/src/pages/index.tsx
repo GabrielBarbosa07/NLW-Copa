@@ -35,13 +35,14 @@ export default function Home(props: HomeProps) {
     } catch (err) {
       console.log(err);
 
-      alert("Falha ao criar o bolão, tente novamente");
+      setPoolTitle("");
+      alert("Falha ao criar o bolão. Backend não foi conectado!");
     }
   }
 
   return (
-    <div className="max-w-[1124px] h-screen mx-auto grid grid-cols-2 items-center gap-28">
-      <main>
+    <div className="min-[1400px]:h-screen max-w-[1124px] max-[1100px]:w-[80%] min-w-[392px] max-[1100px]:h-full px-10 mx-auto flex items-center gap-28 max-[1100px]:p-8">
+      <main className="">
         <Image src={logoImg} alt="NLW Copa" />
 
         <h1 className="mt-14 text-white text-5xl font-bold leading-tight">
@@ -52,12 +53,15 @@ export default function Home(props: HomeProps) {
           <Image src={usersAvatarExampleImg} alt="" />
 
           <strong className="text-gray-100 text-xl">
-            <span className="text-ignite-500">+{props.userCount}</span> pessoas
+            <span className="text-ignite-500">+3.473 {props.userCount}</span> pessoas
             já estão usando
           </strong>
         </div>
 
-        <form onSubmit={createPool} className="mt-10 flex gap-2">
+        <form
+          onSubmit={createPool}
+          className="mt-10 flex gap-2 max-[524px]:flex-col"
+        >
           <input
             className="flex-1 px-6 py-4 rounded bg-gray-800 border border-gray-600 text-sm text-gray-100"
             type="text"
@@ -83,17 +87,17 @@ export default function Home(props: HomeProps) {
           <div className="flex items-center gap-6">
             <Image src={iconCheckImg} alt="" />
             <div className="flex flex-col">
-              <span className="font-bold text-2xl">+{props.poolCount}</span>
+              <span className="font-bold text-2xl">+579 {props.poolCount}</span>
               <span>Bolões criados</span>
             </div>
           </div>
 
-          <div className="w-px h-14 bg-gray-600" />
+          <div className="w-px h-14 bg-gray-600 max-[541px]:hidden" />
 
-          <div className="flex items-center gap-6">
+          <div className="flex items-center gap-6 max-[520px]:gap-8">
             <Image src={iconCheckImg} alt="" />
             <div className="flex flex-col">
-              <span className="font-bold text-2xl">+{props.guessCount}</span>
+              <span className="font-bold text-2xl">+1.524 {props.guessCount}</span>
               <span>Palpites enviados</span>
             </div>
           </div>
@@ -101,6 +105,7 @@ export default function Home(props: HomeProps) {
       </main>
 
       <Image
+        className="max-[1100px]:hidden"
         src={appPreviewImg}
         alt="Dois celulares exibindo uma prévia da aplicação móvel do NLW Copa"
         quality={100}
